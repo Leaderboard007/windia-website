@@ -1,109 +1,83 @@
-<!-- giveaway.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>🎁 Windia Giveaway</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <title>Windia Giveaway</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #0e0e0e;
-      color: white;
       margin: 0;
-      padding: 0;
-    }
-    header, nav {
-      background: #1f1f1f;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav a {
-      margin: 0 12px;
-      text-decoration: none;
-      color: #FFD700;
-      font-weight: bold;
-    }
-    main {
-      padding: 30px;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0e0e0e;
+      color: #fff;
       text-align: center;
-    }
-    .chatter-list {
-      margin-top: 20px;
       padding: 20px;
-      background: #1a1a1a;
-      border-radius: 10px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
     }
-    .chatter-list li {
-      margin: 5px 0;
-      font-size: 1.1em;
+
+    h1 {
+      color: #FFD700;
+      font-size: 2.5em;
+      margin-bottom: 10px;
     }
-    .winner-box {
-      margin-top: 30px;
+
+    #total-chatters {
+      color: #FFD700;
       font-size: 1.5em;
-      color: #00ffcc;
-      font-weight: bold;
-      animation: flash 1s infinite alternate;
-    }
-    @keyframes flash {
-      from { opacity: 1; }
-      to { opacity: 0.6; }
-    }
-    #pick-winner-btn {
       margin-top: 20px;
-      background: #FFD700;
+    }
+
+    #chatter-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    #chatter-list li {
+      font-size: 1.2em;
+      padding: 6px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    #pick-winner-btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      font-weight: bold;
+      background-color: #FFD700;
       color: #000;
       border: none;
-      padding: 10px 20px;
-      font-weight: bold;
       border-radius: 8px;
       cursor: pointer;
+      display: none;
+    }
+
+    #winner {
+      margin-top: 25px;
+      font-size: 1.5em;
+      color: #00FF88;
+      font-weight: bold;
+      animation: winner-glow 1.5s infinite alternate;
+    }
+
+    @keyframes winner-glow {
+      from { text-shadow: 0 0 10px #00FF88; }
+      to { text-shadow: 0 0 20px #00FF88; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div><img src="/logo.png" height="40" alt="Windia Logo" /></div>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/leaderboard.html">Leaderboard</a>
-      <a href="/giveaway.html">Giveaway</a>
-      <a href="https://t.me/windia" target="_blank">Telegram</a>
-      <a href="https://discord.gg/windia" target="_blank">Discord</a>
-      <a href="/shop.html">Shop</a>
-      <a href="/calendar.html">Calendar</a>
-    </nav>
-  </header>
 
-  <main>
-    <h1>🎁 Windia Livestream Giveaway</h1>
-    <p>Watch the livestream on YouTube or Kick and stay in chat to qualify!</p>
+  <h1>🎁 Windia Livestream Giveaway</h1>
+  <p>Watch the stream, stay active in chat, and win live on air!</p>
 
-    <div id="total-chatters">Total live chatters: 0</div>
-    
-    <ul id="chatter-list" class="chatter-list"></ul>
+  <h2 id="total-chatters">Total live chatters: 0</h2>
+  <ul id="chatter-list"></ul>
 
-    <button id="pick-winner-btn" style="display:none;">🎉 Pick Random Winner</button>
-    <div id="winner" class="winner-box"></div>
-  </main>
+  <button id="pick-winner-btn">🎉 Pick Random Winner</button>
+  <h3 id="winner"></h3>
 
- <script src="/scripts/giveaway.js"></script>
-  <h2 id="total-chatters" style="text-align:center; color:#FFD700;">Total live chatters: 0</h2>
-<ul id="chatter-list" style="text-align:center; list-style:none; padding:0;"></ul>
-
-<div style="text-align:center; margin-top:30px;">
-  <button id="pick-winner-btn" style="display:none; padding:10px 20px; font-size:1.2em; background:#FFD700; color:#000; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">
-    🎉 Pick Random Winner
-  </button>
-  <h3 id="winner" style="margin-top:20px; font-size:1.5em; color:#00FF88;"></h3>
-</div>
-
-<!-- Your script tag should be LAST -->
-<script src="/scripts/giveaway.js"></script>
+  <!-- Attach the giveaway logic -->
+  <script src="/scripts/giveaway.js"></script>
 </body>
 </html>
