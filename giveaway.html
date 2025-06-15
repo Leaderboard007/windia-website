@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Windia Giveaway</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -14,10 +14,48 @@
       text-align: center;
     }
 
+    nav {
+      background-color: #1f1f1f;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-left img {
+      height: 40px;
+      margin-right: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-button {
+      background-color: #FFD700;
+      color: #000;
+      font-weight: bold;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
     header {
       padding: 20px;
-      background-color: #1f1f1f;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     h1 {
@@ -95,6 +133,22 @@
   </style>
 </head>
 <body>
+
+  <!-- ✅ Navigation bar -->
+  <nav>
+    <div class="nav-left">
+      <img src="https://i.postimg.cc/CLyZFS2R/windia-logo.png" alt="Windia Logo" />
+      <div class="nav-links">
+        <a href="/">Leaderboard</a>
+        <a href="/giveaway.html">Giveaway</a>
+        <a href="https://t.me/windiaofficial" target="_blank">Telegram</a>
+        <a href="https://discord.gg/windia" target="_blank">Discord</a>
+        <a href="/shop.html">Shop</a>
+        <a href="/calendar.html">Calendar</a>
+      </div>
+    </div>
+    <button class="login-button">Login</button>
+  </nav>
 
   <header>
     <h1>🎁 Windia Livestream Giveaway</h1>
