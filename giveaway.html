@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,6 @@
       padding: 0;
       text-align: center;
     }
-
     nav {
       background-color: #1f1f1f;
       display: flex;
@@ -22,28 +22,23 @@
       padding: 15px 30px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
-
     .nav-left {
       display: flex;
       align-items: center;
     }
-
     .nav-left img {
       height: 40px;
       margin-right: 15px;
     }
-
     .nav-links {
       display: flex;
       gap: 20px;
     }
-
     .nav-links a {
       color: #FFD700;
       text-decoration: none;
       font-weight: 600;
     }
-
     .login-button {
       background-color: #FFD700;
       color: #000;
@@ -53,40 +48,35 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
-    header {
-      padding: 20px;
-    }
-
     h1 {
       font-size: 2.5em;
       color: #FFD700;
       text-shadow: 0 0 10px #FFD700;
+      margin: 20px 0 10px;
     }
-
+    #total-chatters {
+      margin-bottom: 15px;
+    }
     .scroll-container {
-      height: 150px;
+      height: 160px;
       overflow: hidden;
       position: relative;
-      margin: 20px auto;
+      margin: 0 auto 20px;
       width: 90%;
       max-width: 500px;
       border: 2px solid #FFD700;
       border-radius: 10px;
       background-color: #1a1a1a;
     }
-
     .scroll-content {
       display: flex;
       flex-direction: column;
       animation: scrollChatters 10s linear infinite;
     }
-
     @keyframes scrollChatters {
       0% { transform: translateY(0); }
       100% { transform: translateY(-50%); }
     }
-
     .scroll-content li {
       color: #FFD700;
       font-size: 1.2em;
@@ -94,7 +84,6 @@
       text-align: center;
       font-weight: bold;
     }
-
     .winner-show {
       animation: winnerPop 1.5s ease-out forwards;
       color: #00FF88;
@@ -102,13 +91,11 @@
       font-size: 2em;
       margin-top: 30px;
     }
-
     @keyframes winnerPop {
       0% { transform: scale(0.5); opacity: 0; }
       50% { transform: scale(1.2); opacity: 1; }
       100% { transform: scale(1); }
     }
-
     #pick-winner-btn {
       padding: 12px 24px;
       background: #FFD700;
@@ -122,19 +109,15 @@
       margin-top: 20px;
       display: none;
     }
-
     #pick-winner-btn:hover {
       background: #f1c40f;
     }
-
     #winner {
       margin-top: 30px;
     }
   </style>
 </head>
 <body>
-
-  <!-- ✅ Navigation bar -->
   <nav>
     <div class="nav-left">
       <img src="https://i.postimg.cc/CLyZFS2R/windia-logo.png" alt="Windia Logo" />
@@ -149,24 +132,14 @@
     </div>
     <button class="login-button">Login</button>
   </nav>
-
-  <header>
-    <h1>🎁 Windia Livestream Giveaway</h1>
-  </header>
-
+  <h1>🎁 Windia Livestream Giveaway</h1>
   <h2 id="total-chatters">Total live chatters: 0</h2>
-
   <div class="scroll-container">
     <ul id="chatter-list" class="scroll-content"></ul>
   </div>
-
   <button id="pick-winner-btn">🎉 Pick Random Winner</button>
-
   <div id="winner"></div>
-
-  <!-- Confetti & Giveaway JS -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="/scripts/giveaway.js"></script>
-
 </body>
 </html>
