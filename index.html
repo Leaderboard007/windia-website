@@ -99,7 +99,7 @@
     © 2025 Windia. All rights reserved.
   </footer>
 
-  <!-- YouTube Embed or Redirect -->
+  <!-- YouTube Embed or Channel Fallback -->
   <script>
     const container = document.getElementById("streamStatus");
 
@@ -119,7 +119,13 @@
                     allowfullscreen>
             </iframe>`;
         } else {
-          window.location.href = "https://www.youtube.com/@gameshots"; // your YT channel
+          container.innerHTML = `
+            <h2 style="color:#FFD700;">🔔 Not Live Right Now — Visit Our Channel</h2>
+            <iframe width="1296" height="729"
+                    src="https://www.youtube.com/embed?listType=user_uploads&list=gameshots"
+                    frameborder="0"
+                    allowfullscreen>
+            </iframe>`;
         }
       } catch (err) {
         console.error("Live status check failed", err);
