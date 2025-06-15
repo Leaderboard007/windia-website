@@ -1,145 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Windia Giveaway</title>
+  <title>Windia | Giveaway</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
+      margin: 0;
       font-family: 'Poppins', sans-serif;
       background-color: #0e0e0e;
       color: #fff;
-      margin: 0;
-      padding: 0;
-      text-align: center;
     }
     nav {
       background-color: #1f1f1f;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 15px 30px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    .nav-left {
-      display: flex;
       align-items: center;
+      padding: 10px 30px;
     }
     .nav-left img {
       height: 40px;
-      margin-right: 15px;
     }
-    .nav-links {
+    .nav-center {
       display: flex;
       gap: 20px;
     }
-    .nav-links a {
+    .nav-center a {
       color: #FFD700;
       text-decoration: none;
       font-weight: 600;
     }
-    .login-button {
-      background-color: #FFD700;
-      color: #000;
-      font-weight: bold;
-      padding: 8px 16px;
-      border: none;
+    .nav-right a {
+      color: #fff;
+      background: #FFD700;
+      text-decoration: none;
+      padding: 8px 15px;
       border-radius: 6px;
-      cursor: pointer;
     }
-    h1 {
-      font-size: 2.5em;
-      color: #FFD700;
-      text-shadow: 0 0 10px #FFD700;
-      margin: 20px 0 10px;
+    main {
+      text-align: center;
+      padding: 40px 20px;
     }
-    #total-chatters {
-      margin-bottom: 15px;
-    }
-    .scroll-container {
-      height: 160px;
+    #chatters {
+      max-width: 800px;
+      margin: auto;
+      height: 200px;
       overflow: hidden;
-      position: relative;
-      margin: 0 auto 20px;
-      width: 90%;
-      max-width: 500px;
       border: 2px solid #FFD700;
       border-radius: 10px;
-      background-color: #1a1a1a;
-    }
-    .scroll-content {
-      display: flex;
-      flex-direction: column;
-      animation: scrollChatters 10s linear infinite;
-    }
-    @keyframes scrollChatters {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
-    }
-    .scroll-content li {
-      color: #FFD700;
+      padding: 20px;
+      background-color: #1f1f1f;
       font-size: 1.2em;
-      padding: 6px;
-      text-align: center;
-      font-weight: bold;
     }
-    .winner-show {
-      animation: winnerPop 1.5s ease-out forwards;
-      color: #00FF88;
-      text-shadow: 0 0 25px #00FF88, 0 0 35px #00FF88;
-      font-size: 2em;
-      margin-top: 30px;
+    .chatter {
+      padding: 5px 0;
+      animation: scroll 10s linear infinite;
     }
-    @keyframes winnerPop {
-      0% { transform: scale(0.5); opacity: 0; }
-      50% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(1); }
-    }
-    #pick-winner-btn {
-      padding: 12px 24px;
-      background: #FFD700;
-      color: #000;
-      font-size: 1.1em;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-      margin-top: 20px;
-      display: none;
-    }
-    #pick-winner-btn:hover {
-      background: #f1c40f;
+    @keyframes scroll {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
     }
     #winner {
-      margin-top: 30px;
+      margin-top: 40px;
+      font-size: 2em;
+      color: #FFD700;
+      display: none;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #FFD700; }
+      to { text-shadow: 0 0 20px #fff700, 0 0 30px #ffdd00; }
+    }
+    .hidden { display: none; }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="nav-left">
-      <img src="https://i.postimg.cc/CLyZFS2R/windia-logo.png" alt="Windia Logo" />
-      <div class="nav-links">
-        <a href="/">Leaderboard</a>
-        <a href="/giveaway.html">Giveaway</a>
-        <a href="https://t.me/windiaofficial" target="_blank">Telegram</a>
-        <a href="https://discord.gg/windia" target="_blank">Discord</a>
-        <a href="/shop.html">Shop</a>
-        <a href="/calendar.html">Calendar</a>
-      </div>
+      <img src="https://i.postimg.cc/CLyZFS2R/windia-logo.png" alt="Windia Logo">
     </div>
-    <button class="login-button">Login</button>
+    <div class="nav-center">
+      <a href="/index.html">Home</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/giveaway.html">Giveaway</a>
+      <a href="https://t.me/windia" target="_blank">Telegram</a>
+      <a href="https://discord.gg/YOURSERVER" target="_blank">Discord</a>
+    </div>
+    <div class="nav-right">
+      <a href="#">Login</a>
+    </div>
   </nav>
-  <h1>🎁 Windia Livestream Giveaway</h1>
-  <h2 id="total-chatters">Total live chatters: 0</h2>
-  <div class="scroll-container">
-    <ul id="chatter-list" class="scroll-content"></ul>
-  </div>
-  <button id="pick-winner-btn">🎉 Pick Random Winner</button>
-  <div id="winner"></div>
+
+  <main>
+    <h1>🎁 Live Giveaway</h1>
+    <p>All live chatters from YouTube and Kick are listed below. A winner will be picked randomly!</p>
+
+    <div id="chatters"></div>
+
+    <button id="pick-winner" class="hidden">🎉 Pick Random Winner</button>
+    <div id="winner"></div>
+  </main>
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="/scripts/giveaway.js"></script>
+
 </body>
 </html>
