@@ -1,0 +1,97 @@
+<!-- giveaway.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎁 Windia Giveaway</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0e0e0e;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    header, nav {
+      background: #1f1f1f;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #FFD700;
+      font-weight: bold;
+    }
+    main {
+      padding: 30px;
+      text-align: center;
+    }
+    .chatter-list {
+      margin-top: 20px;
+      padding: 20px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .chatter-list li {
+      margin: 5px 0;
+      font-size: 1.1em;
+    }
+    .winner-box {
+      margin-top: 30px;
+      font-size: 1.5em;
+      color: #00ffcc;
+      font-weight: bold;
+      animation: flash 1s infinite alternate;
+    }
+    @keyframes flash {
+      from { opacity: 1; }
+      to { opacity: 0.6; }
+    }
+    #pick-winner-btn {
+      margin-top: 20px;
+      background: #FFD700;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><img src="/logo.png" height="40" alt="Windia Logo" /></div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/giveaway.html">Giveaway</a>
+      <a href="https://t.me/windia" target="_blank">Telegram</a>
+      <a href="https://discord.gg/windia" target="_blank">Discord</a>
+      <a href="/shop.html">Shop</a>
+      <a href="/calendar.html">Calendar</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>🎁 Windia Livestream Giveaway</h1>
+    <p>Watch the livestream on YouTube or Kick and stay in chat to qualify!</p>
+
+    <div id="total-chatters">Total live chatters: 0</div>
+    
+    <ul id="chatter-list" class="chatter-list"></ul>
+
+    <button id="pick-winner-btn" style="display:none;">🎉 Pick Random Winner</button>
+    <div id="winner" class="winner-box"></div>
+  </main>
+
+  <script src="/api/giveaway.js"></script>
+</body>
+</html>
