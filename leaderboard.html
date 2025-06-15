@@ -2,137 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Windia Leaderboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Windia | Leaderboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background-color: #0e0e0e;
-      color: white;
+      color: #fff;
     }
     nav {
       background-color: #1f1f1f;
-      padding: 15px 30px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      align-items: center;
+      padding: 10px 30px;
     }
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #FFD700;
+    .nav-left img {
+      height: 40px;
     }
-    .nav-links {
+    .nav-center {
       display: flex;
       gap: 20px;
-      flex-wrap: wrap;
     }
-    .nav-links a {
-      color: white;
+    .nav-center a {
+      color: #FFD700;
       text-decoration: none;
       font-weight: 600;
     }
-    .nav-links a:hover {
-      text-decoration: underline;
+    .nav-right a {
+      color: #fff;
+      background: #FFD700;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 6px;
     }
-
-    /* Leaderboard Styling */
-    h1 {
-      color: #FFD700;
-      font-size: 2.5rem;
-      font-weight: 800;
+    main {
+      padding: 40px 20px;
       text-align: center;
-      margin: 40px 0 20px;
     }
-
-    #top3 {
+    .top3-container {
       display: flex;
       justify-content: center;
       gap: 30px;
       margin-bottom: 40px;
       flex-wrap: wrap;
     }
-
-    .leaderboard-table {
-      overflow-x: auto;
-      padding: 0 20px 40px;
-    }
-
-    table {
-      width: 100%;
-      max-width: 900px;
-      margin: auto;
-      border-collapse: collapse;
-      background-color: #1a1a1a;
-      color: white;
-    }
-
-    th {
-      background-color: #1f1f1f;
-      color: #FFD700;
-      padding: 12px;
-    }
-
-    td {
-      padding: 12px;
-      border-top: 1px solid #333;
-    }
-
-    .avatar-img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-
     .top-card {
       background: linear-gradient(145deg, #ffcc00, #b8860b);
       border: 2px solid #FFD700;
       border-radius: 12px;
       padding: 20px;
-      width: 180px;
+      width: 200px;
       text-align: center;
-      position: relative;
       box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
-      transition: transform 0.3s ease;
+      margin-bottom: 10px;
     }
-
-    .top-card.rank-1 {
-      transform: scale(1.15);
-      z-index: 1;
+    .top-card.rank-1 { transform: scale(1.15); z-index: 1; }
+    .top-card .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #FFD700;
     }
-
-    @keyframes glow {
-      0% { text-shadow: 0 0 5px #FFD700; }
-      50% { text-shadow: 0 0 20px #FFD700; }
-      100% { text-shadow: 0 0 5px #FFD700; }
+    .top-card .username {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #000;
+    }
+    .top-card .rank-badge {
+      margin-top: 10px;
+      background: #FFD700;
+      color: #000;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    table {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 15px;
+      border: 1px solid #333;
+    }
+    th {
+      background-color: #1f1f1f;
+      color: #FFD700;
+    }
+    td {
+      background-color: #1a1a1a;
+    }
+    .avatar-small {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    .glow-prize {
+      color: #FFD700;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav>
-    <div class="logo">Windia</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="leaderboard.html">Leaderboard</a>
-      <a href="giveaway.html">Giveaway</a>
+    <div class="nav-left">
+      <img src="https://i.postimg.cc/CLyZFS2R/windia-logo.png" alt="Windia Logo" />
+    </div>
+    <div class="nav-center">
+      <a href="/index.html">Home</a>
+      <a href="/leaderboard.html">Leaderboard</a>
+      <a href="/giveaway.html">Giveaway</a>
       <a href="https://t.me/windia" target="_blank">Telegram</a>
-      <a href="https://discord.gg/windia" target="_blank">Discord</a>
-      <a href="shop.html">Shop</a>
-      <a href="calendar.html">Calendar</a>
-      <a href="login.html">Login</a>
+      <a href="https://discord.gg/YOURSERVER" target="_blank">Discord</a>
+      <a href="#">Shop</a>
+      <a href="#">Calendar</a>
+    </div>
+    <div class="nav-right">
+      <a href="#">Login</a>
     </div>
   </nav>
 
-  <!-- Leaderboard Section -->
-  <h1>🔥 Roobet Wager Leaderboard – Current Cycle</h1>
-  <div id="top3"></div>
-  <div class="leaderboard-table">
+  <main>
+    <h2 style="color:#FFD700">🔥 Current Roobet Wager Leaderboard</h2>
+    <div class="top3-container" id="top3"></div>
     <table>
       <thead>
         <tr>
@@ -144,56 +142,48 @@
       </thead>
       <tbody id="leaderboard-body"></tbody>
     </table>
-  </div>
+  </main>
 
   <script>
-    function maskUsername(username) {
-      const first = username.slice(0, 2);
-      const last = username.slice(-2);
-      return first + "****" + last;
-    }
-
     async function fetchLeaderboard() {
       try {
         const response = await fetch('/api/leaderboard');
         const data = await response.json();
-        data.sort((a, b) => b.weightedWagered - a.weightedWagered);
 
         const prizes = ["₹1,000,000", "₹300,000", "₹100,000", "₹50,000", "₹10,000", "₹5,000", "₹5,000", "₹5,000", "₹5,000", "₹5,000", "₹3,000", "₹3,000", "₹3,000", "₹3,000", "₹3,000"];
-        const top3Container = document.getElementById('top3');
-        const tbody = document.getElementById('leaderboard-body');
-
+        
         const top3 = [data[1], data[0], data[2]];
+        const top3Container = document.getElementById("top3");
+        const tbody = document.getElementById("leaderboard-body");
+
         top3.forEach((user, i) => {
           if (!user) return;
-          const card = document.createElement('div');
-          card.className = 'top-card' + (i === 1 ? ' rank-1' : '');
-          card.innerHTML = `
-            <div style="position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); background:#FFD700; color:#000; font-size:0.9em; padding:5px 10px; border-radius:8px; font-weight:bold; box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);">
-              ${['🥈 2nd', '🥇 1st', '🥉 3rd'][i]}
-            </div>
-            <img src="https://robohash.org/${user.username}.png?size=60x60" alt="${user.username}" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid #FFD700; margin-bottom: 10px;">
-            <div style="font-size: 1.1em; font-weight: bold; color: #000;">${maskUsername(user.username)}</div>
+          const div = document.createElement("div");
+          div.className = "top-card" + (i === 1 ? " rank-1" : "");
+          div.innerHTML = `
+            <img class="avatar" src="https://robohash.org/${user.username}.png?size=60x60" />
+            <div class="username">${user.username}</div>
             <div>Wagered: ${user.weightedWagered.toLocaleString()}</div>
-            <div style="color: #FFD700; font-weight: bold; animation: glow 2s infinite;">${prizes[[1, 0, 2][i]]}</div>
+            <div class="rank-badge">${['🥈 2nd', '🥇 1st', '🥉 3rd'][i]}</div>
+            <div class="glow-prize">${prizes[[1,0,2][i]]}</div>
           `;
-          top3Container.appendChild(card);
+          top3Container.appendChild(div);
         });
 
         data.forEach((user, index) => {
           if (index >= 3 && index < 15) {
-            const tr = document.createElement('tr');
+            const tr = document.createElement("tr");
             tr.innerHTML = `
               <td>${index + 1}</td>
-              <td><img src="https://robohash.org/${user.username}.png?size=30x30" class="avatar-img">${maskUsername(user.username)}</td>
+              <td><img class="avatar-small" src="https://robohash.org/${user.username}.png?size=30x30" />${user.username}</td>
               <td>${user.weightedWagered.toLocaleString()}</td>
-              <td style="color: #FFD700; font-weight: bold;">${prizes[index]}</td>
+              <td><span class="glow-prize">${prizes[index]}</span></td>
             `;
             tbody.appendChild(tr);
           }
         });
       } catch (err) {
-        console.error('Error fetching leaderboard:', err);
+        console.error('Error:', err);
       }
     }
 
