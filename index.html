@@ -116,13 +116,18 @@
   const container = document.getElementById("streamStatus");
 
   container.innerHTML = `
-    <h2 style="color:#FFD700;">🔴 Currently LIVE on YouTube!</h2>
-    <div class="video-container">
+<div class="video-container" style="text-align: center;">
   <h2 style="color:#FFD700;">🔴 Currently LIVE on YouTube!</h2>
-  <div class="responsive-video">
-    <iframe src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1"
-            frameborder="0"
-            allowfullscreen></iframe>
+  <iframe
+    width="1296"
+    height="729"
+    src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1"
+    frameborder="0"
+    allowfullscreen
+    style="border-radius: 12px; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);">
+  </iframe>
+</div>
+
   </div>
 </div>
 
