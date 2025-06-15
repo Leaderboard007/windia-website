@@ -1,42 +1,65 @@
-const YOUR_DISCORD_ID = "426857675188469773";
-const loggedInUserDiscordId = "426857675188469773"; // Simulate Jai being logged in
 
-let allChatters = [];
+const { google } = require('googleapis');
+const axios = require('axios');
 
-const chatterList = document.getElementById("chatter-list");
-const totalDisplay = document.getElementById("total-chatters");
-const pickBtn = document.getElementById("pick-winner-btn");
-const winnerBox = document.getElementById("winner");
+// YOUTUBE API SETUP
+const API_KEY = 'AIzaSyCjPeB_QxBiYNT55FxT0QWVw5ifG86v4KQ';
+const CHANNEL_IDS = [
+  'UCNjbFCeNd7JDs9IZNYfp_Eg',
+  'UCfVLx176hs6ePDuc1pwWy0w'
+];
 
-// Show button only for Jai
-if (loggedInUserDiscordId === YOUR_DISCORD_ID) {
-  pickBtn.style.display = "inline-block";
+// Simulated KICK chat (real implementation needs websocket which Vercel doesn't support)
+const fakeKickChatters = [
+  "KickFan1", "ProBettor", "LuckyStrike", "SpinMaster", "GameLover"
+];
+
+async function getYouTubeChatters() {
+  const youtube = google.youtube({ version: 'v3', auth: API_KEY });
+  let chatters = [];
+
+  for (const channelId of CHANNEL_IDS) {
+    try {
+      const liveResp = await youtube.search.list({
+        part: 'snippet',
+        channelId: channelId,
+        eventType: 'live',
+        type: 'video',
+        maxResults: 1
+      });
+
+      if (!liveResp.data.items.length) continue;
+
+      const liveChatId = (await youtube.videos.list({
+        part: 'liveStreamingDetails',
+        id: liveResp.data.items[0].id.videoId
+      })).data.items[0]?.liveStreamingDetails?.activeLiveChatId;
+
+      if (!liveChatId) continue;
+
+      const chatResp = await youtube.liveChatMessages.list({
+        liveChatId,
+        part: 'snippet,authorDetails',
+        maxResults: 100
+      });
+
+      const names = chatResp.data.items.map(msg => msg.authorDetails.displayName);
+      chatters.push(...names);
+    } catch (e) {
+      console.error("YT error:", e.message);
+    }
+  }
+
+  return chatters;
 }
 
-pickBtn.addEventListener("click", () => {
-  if (allChatters.length === 0) return;
-  const winner = allChatters[Math.floor(Math.random() * allChatters.length)];
-  winnerBox.textContent = `🎉 Winner: ${winner}`;
-});
-
-// Load placeholder chatters
-function loadFakeChatters() {
-  allChatters = ["kancha_cheena", "sattaKing", "riderOP", "sunny007", "crypjunkie"];
-  updateChatterDisplay();
-}
-
-function updateChatterDisplay() {
-  chatterList.innerHTML = "";
-  allChatters.forEach(user => {
-    const li = document.createElement("li");
-    li.textContent = user;
-    li.style.padding = "6px";
-    li.style.fontWeight = "bold";
-    li.style.fontSize = "1.1em";
-    li.style.color = "#fff";
-    chatterList.appendChild(li);
-  });
-  totalDisplay.textContent = `Total live chatters: ${allChatters.length}`;
-}
-
-document.addEventListener("DOMContentLoaded", loadFakeChatters);
+module.exports = async (req, res) => {
+  try {
+    const ytChatters = await getYouTubeChatters();
+    const allChatters = [...ytChatters, ...fakeKickChatters];
+    res.status(200).json({ chatters: allChatters });
+  } catch (err) {
+    console.error("Giveaway API error:", err.message);
+    res.status(500).json({ error: "Failed to fetch chatters" });
+  }
+};
