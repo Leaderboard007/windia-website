@@ -99,7 +99,7 @@
     © 2025 Windia. All rights reserved.
   </footer>
 
-  <!-- YouTube / Instagram Embed Logic -->
+  <!-- YouTube Embed or Redirect -->
   <script>
     const container = document.getElementById("streamStatus");
 
@@ -119,19 +119,11 @@
                     allowfullscreen>
             </iframe>`;
         } else {
-          container.innerHTML = `
-            <h2 style="color:#FFD700;">📷 Currently Offline – Enjoy Our Reels</h2>
-            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-            <iframe src="//lightwidget.com/widgets/8ec3abd820d15812bd0f4e8c060566fc.html"
-                    scrolling="no"
-                    allowtransparency="true"
-                    class="lightwidget-widget"
-                    style="width:100%;border:0;overflow:hidden;height:729px;">
-            </iframe>`;
+          window.location.href = "https://www.youtube.com/@gameshots"; // your YT channel
         }
       } catch (err) {
-        container.innerHTML = `<p style="color:red;">Error loading stream. Please try again later.</p>`;
         console.error("Live status check failed", err);
+        container.innerHTML = `<p style="color:red;">Error checking live status.</p>`;
       }
     }
 
