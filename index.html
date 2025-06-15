@@ -99,6 +99,7 @@
     © 2025 Windia. All rights reserved.
   </footer>
 
+  <!-- YouTube / Instagram Embed Logic -->
   <script>
     const container = document.getElementById("streamStatus");
 
@@ -120,11 +121,12 @@
         } else {
           container.innerHTML = `
             <h2 style="color:#FFD700;">📷 Currently Offline – Enjoy Our Reels</h2>
-            <iframe src="https://cdn.lightwidget.com/widgets/5b67c99d207e5301a923d8b82e4d1ad1.html"
-                    width="1296" height="729" 
-                    scrolling="no" 
+            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+            <iframe src="//lightwidget.com/widgets/8ec3abd820d15812bd0f4e8c060566fc.html"
+                    scrolling="no"
                     allowtransparency="true"
-                    frameborder="0">
+                    class="lightwidget-widget"
+                    style="width:100%;border:0;overflow:hidden;height:729px;">
             </iframe>`;
         }
       } catch (err) {
