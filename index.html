@@ -18,6 +18,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
     .nav-left {
       font-size: 24px;
@@ -27,12 +28,14 @@
     .nav-right {
       display: flex;
       gap: 20px;
+      flex-wrap: wrap;
     }
     .nav-right a, .login-btn {
       text-decoration: none;
       color: #FFD700;
       font-weight: 600;
       transition: color 0.3s;
+      cursor: pointer;
     }
     .nav-right a:hover, .login-btn:hover {
       color: #fff;
@@ -54,6 +57,17 @@
       padding: 20px;
       background: #1f1f1f;
       color: #aaa;
+      margin-top: 40px;
+    }
+    iframe {
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+    @media (max-width: 768px) {
+      iframe {
+        width: 100% !important;
+        height: auto !important;
+      }
     }
   </style>
 </head>
@@ -101,17 +115,17 @@
             <iframe width="1296" height="729"
                     src="https://www.youtube.com/embed/${data.items[0].id.videoId}?autoplay=1"
                     frameborder="0"
-                    allowfullscreen
-                    style="border-radius: 12px; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);">
+                    allowfullscreen>
             </iframe>`;
         } else {
           container.innerHTML = `
-            <h2 style="color:#FFD700;">⚠️ Currently Offline – Check Out Our Instagram Reels!</h2>
-            <a href="https://www.instagram.com/gameshotsyt/reels/" 
-               target="_blank" 
-               style="display:inline-block; font-size:1.2rem; color:#FFD700; text-decoration:underline;">
-              👉 Watch Reels on Instagram
-            </a>`;
+            <h2 style="color:#FFD700;">📷 Currently Offline – Enjoy Our Reels</h2>
+            <iframe src="https://cdn.lightwidget.com/widgets/5b67c99d207e5301a923d8b82e4d1ad1.html"
+                    width="1296" height="729" 
+                    scrolling="no" 
+                    allowtransparency="true"
+                    frameborder="0">
+            </iframe>`;
         }
       } catch (err) {
         container.innerHTML = `<p style="color:red;">Error loading stream. Please try again later.</p>`;
