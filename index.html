@@ -107,13 +107,11 @@
         } else {
           container.innerHTML = `
             <h2 style="color:#FFD700;">⚠️ Currently Offline – Check Out Our Instagram Reels!</h2>
-            <iframe src="https://www.instagram.com/windia.live/embed" 
-                    width="1296" 
-                    height="729" 
-                    frameborder="0" 
-                    style="border-radius: 12px; box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);" 
-                    allowfullscreen>
-            </iframe>`;
+            <a href="https://www.instagram.com/gameshotsyt/reels/" 
+               target="_blank" 
+               style="display:inline-block; font-size:1.2rem; color:#FFD700; text-decoration:underline;">
+              👉 Watch Reels on Instagram
+            </a>`;
         }
       } catch (err) {
         container.innerHTML = `<p style="color:red;">Error loading stream. Please try again later.</p>`;
