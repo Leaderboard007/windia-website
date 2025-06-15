@@ -1,180 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Windia Leaderboard</title>
-  <style>
-    body {
-      background-color: #111;
-      color: white;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    nav {
-      background-color: #222;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: white;
-    }
-    .nav-links {
-      display: flex;
-      flex: 1;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      color: white;
-      margin: 0 12px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-    .login-button {
-      background-color: #5865F2;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .leaderboard {
-      max-width: 900px;
-      margin: 40px auto;
-      background-color: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .top-three {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-    .card {
-      background-color: #222;
-      border-radius: 10px;
-      padding: 20px;
-      width: 250px;
-      margin: 10px;
-    }
-    .first-place {
-      border: 2px solid gold;
-      color: gold;
-      font-weight: bold;
-    }
-    .second-place {
-      border: 2px solid silver;
-      color: silver;
-      font-weight: bold;
-    }
-    .third-place {
-      border: 2px solid #cd7f32;
-      color: #cd7f32;
-      font-weight: bold;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      color: white;
-    }
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #333;
-    }
-    th {
-      background-color: #333;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Roobet Wager Leaderboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <nav>
-    <div class="logo">Windia</div>
-    <div class="nav-links">
-      <a href="/index.html">Home</a>
-      <a href="/giveaway.html">Giveaway</a>
-      <a href="https://t.me/yourtelegram">Telegram</a>
-      <a href="https://discord.gg/yourdiscord">Discord</a>
-      <a href="/shop.html">Shop</a>
-      <a href="/calendar.html">Calendar</a>
-    </div>
-    <a href="/login.html" class="login-button">Login</a>
-  </nav>
-
-  <div class="leaderboard">
-    <h2>Roobet Wager Leaderboard</h2>
-    <p>Top players with highest wager will win prizes!</p>
-
-    <div class="top-three" id="top-three"></div>
-
-    <table>
+  <header>
+    <h1>🔥 Roobet Wager Leaderboard</h1>
+    <p id="date-range">⏳ Ends in: calculating...</p>
+    <a href="https://roobet.com/?ref=windia" class="play-button" target="_blank">🚀 Play & Win Now!</a>
+  </header>
+  <main>
+    <div class="top3-container" id="top3"></div>
+    <table class="leaderboard">
       <thead>
         <tr>
           <th>Rank</th>
-          <th>Username</th>
-          <th>Total Wagered</th>
+          <th>User</th>
+          <th>Wagered</th>
+          <th>Prize</th>
         </tr>
       </thead>
-      <tbody id="leaderboard-body">
-        <!-- Dynamic rows inserted by script -->
-      </tbody>
+      <tbody id="leaderboard-body"></tbody>
     </table>
-  </div>
-
+    <div class="share-buttons">
+      <a href="#" onclick="alert('Coming soon!')">📣 Share on Telegram</a>
+      <a href="#" onclick="alert('Coming soon!')">🎉 Share on Discord</a>
+    </div>
+  </main>
   <script>
-    const users = [
-      { username: 'HighRoller123', wager: 150000 },
-      { username: 'SpinKing', wager: 120000 },
-      { username: 'LuckyCharm', wager: 90000 },
-      { username: 'BananaBoy', wager: 70000 },
-      { username: 'WindiaFan', wager: 50000 }
-    ];
+    function maskUsername(username) {
+      const first = username.slice(0, 2);
+      const last = username.slice(-2);
+      return first + "****" + last;
+    }
 
-    users.sort((a, b) => b.wager - a.wager);
+    function formatDate(date) {
+      return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    }
 
-    const topThreeDiv = document.getElementById('top-three');
-    const tbody = document.getElementById('leaderboard-body');
-
-    users.forEach((user, index) => {
-      if (index < 3) {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        if (index === 0) card.classList.add('first-place');
-        if (index === 1) card.classList.add('second-place');
-        if (index === 2) card.classList.add('third-place');
-
-        card.innerHTML = `
-          <h3>${index + 1} Place</h3>
-          <p><strong>${user.username}</strong></p>
-          <p>Wagered: ₹${user.wager.toLocaleString()}</p>
-        `;
-        topThreeDiv.appendChild(card);
+    function getCycleDates() {
+      const today = new Date();
+      let start, end;
+      if (today.getDate() >= 23) {
+        start = new Date(today.getFullYear(), today.getMonth(), 23);
+        end = new Date(today.getFullYear(), today.getMonth() + 1, 22);
       } else {
-        const row = document.createElement('tr');
-        const rankCell = document.createElement('td');
-        const userCell = document.createElement('td');
-        const wagerCell = document.createElement('td');
-
-        rankCell.textContent = index + 1;
-        userCell.textContent = user.username;
-        wagerCell.textContent = `₹${user.wager.toLocaleString()}`;
-
-        row.appendChild(rankCell);
-        row.appendChild(userCell);
-        row.appendChild(wagerCell);
-        tbody.appendChild(row);
+        start = new Date(today.getFullYear(), today.getMonth() - 1, 23);
+        end = new Date(today.getFullYear(), today.getMonth(), 22);
       }
+      return { start, end };
+    }
+
+    async function fetchLeaderboard() {
+      try {
+        const { start, end } = getCycleDates();
+        const response = await fetch('/api/leaderboard');
+        const data = await response.json();
+
+        data.sort((a, b) => b.weightedWagered - a.weightedWagered);
+
+        const prizes = ["₹1,000,000", "₹300,000", "₹100,000", "₹50,000", "₹10,000", "₹5,000", "₹5,000", "₹5,000", "₹5,000", "₹5,000", "₹3,000", "₹3,000", "₹3,000", "₹3,000", "₹3,000"];
+
+        const top3Container = document.getElementById('top3');
+        const tbody = document.getElementById('leaderboard-body');
+        top3Container.innerHTML = '';
+        tbody.innerHTML = '';
+
+        const top3 = [data[1], data[0], data[2]];
+        top3.forEach((user, i) => {
+          if (!user) return;
+          const card = document.createElement('div');
+          card.className = 'top-card' + (i === 1 ? ' rank-1' : '');
+          const badge = document.createElement('div');
+          badge.className = 'rank-badge';
+          badge.textContent = ['🥈 2nd', '🥇 1st', '🥉 3rd'][i];
+          const avatar = document.createElement('img');
+          avatar.src = `https://robohash.org/${user.username}.png?size=60x60`;
+          avatar.alt = user.username;
+          avatar.className = 'avatar';
+          const name = document.createElement('div');
+          name.className = 'username';
+          name.textContent = maskUsername(user.username);
+          const wager = document.createElement('div');
+          wager.textContent = `Wagered: ${user.weightedWagered.toLocaleString()}`;
+          const prize = document.createElement('div');
+          prize.className = 'glow-prize';
+          prize.textContent = prizes[[1, 0, 2][i]];
+          card.appendChild(badge);
+          card.appendChild(avatar);
+          card.appendChild(name);
+          card.appendChild(wager);
+          card.appendChild(prize);
+          top3Container.appendChild(card);
+        });
+
+        data.forEach((user, index) => {
+          if (index >= 3 && index < 15) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${index + 1}</td>
+              <td class="username-cell">
+                <img class="avatar-small" src="https://robohash.org/${user.username}.png?size=30x30" />
+                ${maskUsername(user.username)}
+              </td>
+              <td>${user.weightedWagered.toLocaleString()}</td>
+              <td><span class="glow-prize">${prizes[index]}</span></td>
+            `;
+            tbody.appendChild(tr);
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching leaderboard:', error);
+      }
+    }
+
+    function updateCountdownDisplay() {
+      const today = new Date();
+      let end;
+      if (today.getDate() >= 23) {
+        end = new Date(today.getFullYear(), today.getMonth() + 1, 22, 23, 59, 59);
+      } else {
+        end = new Date(today.getFullYear(), today.getMonth(), 22, 23, 59, 59);
+      }
+
+      function pad(n) { return n < 10 ? '0' + n : n; }
+
+      function tick() {
+        const now = new Date();
+        const diff = end - now;
+        const el = document.getElementById('date-range');
+        if (!el) return;
+
+        if (diff <= 0) {
+          el.textContent = '✅ Cycle ended. Refreshing soon...';
+          return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+        const minutes = Math.floor(diff / (1000 * 60)) % 60;
+        const seconds = Math.floor(diff / 1000) % 60;
+        el.textContent = `⏳ Ends in: ${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCountdownDisplay();
+      fetchLeaderboard();
     });
   </script>
 </body>
