@@ -50,11 +50,39 @@
       text-decoration: none;
     }
     .leaderboard {
-      max-width: 800px;
+      max-width: 900px;
       margin: 40px auto;
       background-color: #1e1e1e;
       padding: 20px;
       border-radius: 10px;
+    }
+    .top-three {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .card {
+      background-color: #222;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      margin: 10px;
+    }
+    .first-place {
+      border: 2px solid gold;
+      color: gold;
+      font-weight: bold;
+    }
+    .second-place {
+      border: 2px solid silver;
+      color: silver;
+      font-weight: bold;
+    }
+    .third-place {
+      border: 2px solid #cd7f32;
+      color: #cd7f32;
+      font-weight: bold;
     }
     table {
       width: 100%;
@@ -67,18 +95,6 @@
     }
     th {
       background-color: #333;
-    }
-    .first-place {
-      color: gold;
-      font-weight: bold;
-    }
-    .second-place {
-      color: silver;
-      font-weight: bold;
-    }
-    .third-place {
-      color: #cd7f32;
-      font-weight: bold;
     }
   </style>
 </head>
@@ -100,6 +116,8 @@
     <h2>Roobet Wager Leaderboard</h2>
     <p>Top players with highest wager will win prizes!</p>
 
+    <div class="top-three" id="top-three"></div>
+
     <table>
       <thead>
         <tr>
@@ -115,7 +133,6 @@
   </div>
 
   <script>
-    // Sample leaderboard data (replace this with real fetch or backend logic)
     const users = [
       { username: 'HighRoller123', wager: 150000 },
       { username: 'SpinKing', wager: 120000 },
@@ -124,26 +141,40 @@
       { username: 'WindiaFan', wager: 50000 }
     ];
 
+    users.sort((a, b) => b.wager - a.wager);
+
+    const topThreeDiv = document.getElementById('top-three');
     const tbody = document.getElementById('leaderboard-body');
 
-    users.sort((a, b) => b.wager - a.wager).forEach((user, index) => {
-      const row = document.createElement('tr');
-      const rankCell = document.createElement('td');
-      const userCell = document.createElement('td');
-      const wagerCell = document.createElement('td');
+    users.forEach((user, index) => {
+      if (index < 3) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        if (index === 0) card.classList.add('first-place');
+        if (index === 1) card.classList.add('second-place');
+        if (index === 2) card.classList.add('third-place');
 
-      rankCell.textContent = index + 1;
-      userCell.textContent = user.username;
-      wagerCell.textContent = `₹${user.wager.toLocaleString()}`;
+        card.innerHTML = `
+          <h3>${index + 1} Place</h3>
+          <p><strong>${user.username}</strong></p>
+          <p>Wagered: ₹${user.wager.toLocaleString()}</p>
+        `;
+        topThreeDiv.appendChild(card);
+      } else {
+        const row = document.createElement('tr');
+        const rankCell = document.createElement('td');
+        const userCell = document.createElement('td');
+        const wagerCell = document.createElement('td');
 
-      if (index === 0) rankCell.className = userCell.className = wagerCell.className = 'first-place';
-      if (index === 1) rankCell.className = userCell.className = wagerCell.className = 'second-place';
-      if (index === 2) rankCell.className = userCell.className = wagerCell.className = 'third-place';
+        rankCell.textContent = index + 1;
+        userCell.textContent = user.username;
+        wagerCell.textContent = `₹${user.wager.toLocaleString()}`;
 
-      row.appendChild(rankCell);
-      row.appendChild(userCell);
-      row.appendChild(wagerCell);
-      tbody.appendChild(row);
+        row.appendChild(rankCell);
+        row.appendChild(userCell);
+        row.appendChild(wagerCell);
+        tbody.appendChild(row);
+      }
     });
   </script>
 </body>
