@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Windia</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 40px;
+    }
+    .login-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .discord {
+      background-color: #5865F2;
+    }
+    .telegram {
+      background-color: #0088cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Login to Windia</h1>
+  <div class="login-buttons">
+    <a href="https://bybukwhjwujvnbjjqcog.supabase.co/auth/v1/authorize?provider=discord" class="discord">Login with Discord</a>
+    <a href="https://t.me/windialogin_bot?start=login" class="telegram">Login with Telegram</a>
+  </div>
+</body>
+</html>
