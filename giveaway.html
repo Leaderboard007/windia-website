@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Windia | Giveaway</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -38,48 +38,47 @@
       border-radius: 6px;
     }
     main {
-      text-align: center;
       padding: 40px 20px;
+      text-align: center;
     }
     #chatters {
-      max-width: 800px;
-      margin: auto;
-      height: 200px;
-      overflow: hidden;
-      border: 2px solid #FFD700;
-      border-radius: 10px;
+      margin: 30px auto;
+      max-width: 600px;
       padding: 20px;
-      background-color: #1f1f1f;
-      font-size: 1.2em;
+      background-color: #1a1a1a;
+      border: 2px dashed #FFD700;
+      border-radius: 10px;
+      height: 200px;
+      overflow-y: scroll;
+      font-size: 1.1em;
     }
     .chatter {
       padding: 5px 0;
-      animation: scroll 10s linear infinite;
     }
-    @keyframes scroll {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
-    }
-    #winner {
-      margin-top: 40px;
-      font-size: 2em;
-      color: #FFD700;
-      display: none;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #FFD700; }
-      to { text-shadow: 0 0 20px #fff700, 0 0 30px #ffdd00; }
-    }
-    .hidden { display: none; }
-    button {
+    #pick-winner {
       margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1em;
-      background-color: #FFD700;
+      padding: 12px 25px;
+      background: #FFD700;
+      color: #000;
+      font-weight: bold;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      font-size: 1.1em;
+    }
+    .hidden {
+      display: none;
+    }
+    #winner {
+      font-size: 2em;
+      color: #FFD700;
+      margin-top: 40px;
+      animation: popIn 0.8s ease-in-out;
+      display: none;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -87,7 +86,7 @@
 
   <nav>
     <div class="nav-left">
-      <img src="https://i.postimg.cc/CLyZFS2R/windia-logo.png" alt="Windia Logo">
+      <img src="https://i.postimg.cc/CLyZFS2R/windia-logo.png" alt="Windia Logo" />
     </div>
     <div class="nav-center">
       <a href="/index.html">Home</a>
@@ -95,6 +94,8 @@
       <a href="/giveaway.html">Giveaway</a>
       <a href="https://t.me/windia" target="_blank">Telegram</a>
       <a href="https://discord.gg/YOURSERVER" target="_blank">Discord</a>
+      <a href="#">Shop</a>
+      <a href="#">Calendar</a>
     </div>
     <div class="nav-right">
       <a href="#">Login</a>
@@ -102,15 +103,13 @@
   </nav>
 
   <main>
-    <h1>🎁 Live Giveaway</h1>
-    <p>All live chatters from YouTube and Kick are listed below. A winner will be picked randomly!</p>
-
+    <h2>🎁 Live Giveaway Chatters</h2>
     <div id="chatters"></div>
-
     <button id="pick-winner" class="hidden">🎉 Pick Random Winner</button>
     <div id="winner"></div>
   </main>
 
+  <!-- Confetti CDN -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="/scripts/giveaway.js"></script>
 
