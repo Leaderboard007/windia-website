@@ -1,4 +1,5 @@
-const YOUR_DISCORD_ID = "426857675188469773"; // <-- Replace with your actual Discord user ID
+const YOUR_DISCORD_ID = "426857675188469773";
+const loggedInUserDiscordId = "426857675188469773"; // Simulate Jai being logged in
 
 let allChatters = [];
 
@@ -7,10 +8,7 @@ const totalDisplay = document.getElementById("total-chatters");
 const pickBtn = document.getElementById("pick-winner-btn");
 const winnerBox = document.getElementById("winner");
 
-// Fake login simulation for now (replace with real Discord login session logic)
-const loggedInUserDiscordId = "426857675188469773"; // simulate you being logged in
-
-// Check if it's Jai
+// Show button only for Jai
 if (loggedInUserDiscordId === YOUR_DISCORD_ID) {
   pickBtn.style.display = "inline-block";
 }
@@ -21,9 +19,9 @@ pickBtn.addEventListener("click", () => {
   winnerBox.textContent = `🎉 Winner: ${winner}`;
 });
 
-// Temporary function until we fetch real chatters
+// Load placeholder chatters
 function loadFakeChatters() {
-  allChatters = ["sunny123", "rahul_dev", "riderOP", "crypjunkie", "kancha_cheena"];
+  allChatters = ["kancha_cheena", "sattaKing", "riderOP", "sunny007", "crypjunkie"];
   updateChatterDisplay();
 }
 
@@ -32,9 +30,13 @@ function updateChatterDisplay() {
   allChatters.forEach(user => {
     const li = document.createElement("li");
     li.textContent = user;
+    li.style.padding = "6px";
+    li.style.fontWeight = "bold";
+    li.style.fontSize = "1.1em";
+    li.style.color = "#fff";
     chatterList.appendChild(li);
   });
   totalDisplay.textContent = `Total live chatters: ${allChatters.length}`;
 }
 
-loadFakeChatters(); // load placeholder
+document.addEventListener("DOMContentLoaded", loadFakeChatters);
