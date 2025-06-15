@@ -1,4 +1,4 @@
-const YOUR_DISCORD_ID = "YOUR_DISCORD_ID_HERE"; // <-- Replace with your actual Discord user ID
+const YOUR_DISCORD_ID = "426857675188469773"; // <-- Replace with your actual Discord user ID
 
 let allChatters = [];
 
@@ -8,7 +8,7 @@ const pickBtn = document.getElementById("pick-winner-btn");
 const winnerBox = document.getElementById("winner");
 
 // Fake login simulation for now (replace with real Discord login session logic)
-const loggedInUserDiscordId = "YOUR_DISCORD_ID_HERE"; // simulate you being logged in
+const loggedInUserDiscordId = "426857675188469773"; // simulate you being logged in
 
 // Check if it's Jai
 if (loggedInUserDiscordId === YOUR_DISCORD_ID) {
