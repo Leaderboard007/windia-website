@@ -41,23 +41,48 @@
       text-align: center;
     }
 
+    p {
+      text-align: center;
+      color: #ccc;
+    }
+
+    /* Scrolling Chatters */
+    .scroll-container {
+      height: 150px;
+      overflow: hidden;
+      position: relative;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 500px;
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      background-color: #1a1a1a;
+    }
+
+    .scroll-content {
+      display: flex;
+      flex-direction: column;
+      animation: scrollChatters 10s linear infinite;
+    }
+
+    @keyframes scrollChatters {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+
+    .scroll-content li {
+      color: #FFD700;
+      font-size: 1.2em;
+      padding: 6px;
+      text-align: center;
+      font-weight: bold;
+    }
+
     #total-chatters {
       color: #FFD700;
       font-size: 1.4em;
       margin-top: 20px;
       text-align: center;
-    }
-
-    #chatter-list {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-    }
-
-    #chatter-list li {
-      font-size: 1.2em;
-      padding: 6px;
-      font-weight: bold;
     }
 
     #pick-winner-btn {
@@ -73,18 +98,20 @@
       cursor: pointer;
     }
 
-    #winner {
-      margin-top: 25px;
-      font-size: 1.6em;
-      color: #00FF88;
-      text-align: center;
-      font-weight: bold;
-      animation: winner-glow 1.5s infinite alternate;
+    @keyframes winnerPop {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
     }
 
-    @keyframes winner-glow {
-      from { text-shadow: 0 0 10px #00FF88; }
-      to { text-shadow: 0 0 20px #00FF88; }
+    #winner {
+      animation: winnerPop 1s ease-out forwards;
+      font-size: 2em;
+      color: #00FF88;
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 0 20px #00FF88, 0 0 30px #00FF88;
     }
   </style>
 </head>
@@ -103,21 +130,23 @@
     </div>
   </nav>
 
-  <!-- ✅ Giveaway Header -->
+  <!-- ✅ Header -->
   <h1>🎁 Windia Livestream Giveaway</h1>
-  <p style="text-align:center;">Watch the stream, stay active in chat, and win live on air!</p>
+  <p>Watch the stream, stay active in chat, and win live on air!</p>
 
-  <!-- ✅ Live Chatters Display -->
+  <!-- ✅ Chatters Scroll List -->
   <h2 id="total-chatters">Total live chatters: 0</h2>
-  <ul id="chatter-list"></ul>
+  <div class="scroll-container">
+    <ul id="chatter-list" class="scroll-content"></ul>
+  </div>
 
-  <!-- ✅ Winner Button -->
+  <!-- ✅ Winner Button + Display -->
   <div style="text-align:center;">
     <button id="pick-winner-btn">🎉 Pick Random Winner</button>
     <h3 id="winner"></h3>
   </div>
 
-  <!-- ✅ Script -->
+  <!-- ✅ Load JavaScript -->
   <script src="/scripts/giveaway.js"></script>
 </body>
 </html>
