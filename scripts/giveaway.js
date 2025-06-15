@@ -1,45 +1,47 @@
+// ✨ Dummy chatters (real integration comes next)
+const fakeChatters = [
+  "WindianBhai", "LuckyPlayer", "JackpotKing", "SpinMaster",
+  "StakeWarrior", "UPIBoy", "DiceDon", "SlotQueen",
+  "BananaMan", "WildWagerer", "ChatChamp", "BonusHunter"
+];
 
-// Windia Website Script - Basic Navigation & Effects
+// Show fake chatters in scrolling area
+function renderChatters() {
+  const container = document.getElementById('chatters');
+  container.innerHTML = '';
+  fakeChatters.forEach(name => {
+    const div = document.createElement('div');
+    div.className = 'chatter';
+    div.textContent = name;
+    container.appendChild(div);
+  });
+}
+
+// Pick a random winner
+function pickRandomWinner() {
+  const winner = fakeChatters[Math.floor(Math.random() * fakeChatters.length)];
+  const winnerDiv = document.getElementById('winner');
+  winnerDiv.textContent = `🎉 Winner: ${winner}! 🎉`;
+  winnerDiv.style.display = 'block';
+
+  // 🎊 Fire confetti
+  confetti({
+    particleCount: 150,
+    spread: 90,
+    origin: { y: 0.6 }
+  });
+}
+
+// Show pick button only for Jai (Discord ID based)
+function checkDiscordID() {
+  const discordID = localStorage.getItem("discord_id");
+  if (discordID === "426857675188469773") {
+    document.getElementById('pick-winner').classList.remove('hidden');
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Toggle responsive nav
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector("nav");
-
-  if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => {
-      nav.classList.toggle("open");
-    });
-  }
-
-  // Smooth scroll for internal anchor links
-  const links = document.querySelectorAll("a[href^='#']");
-  links.forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-
-  // Highlight active nav item on scroll
-  const sections = document.querySelectorAll("section[id]");
-  window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      if (scrollY >= sectionTop - 60) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    document.querySelectorAll("nav a").forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active");
-      }
-    });
-  });
+  renderChatters();
+  checkDiscordID();
+  document.getElementById('pick-winner').addEventListener('click', pickRandomWinner);
 });
