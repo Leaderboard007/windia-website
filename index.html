@@ -94,32 +94,14 @@
     </div>
   </main>
 
-  <script>
-    // Live YouTube stream check
-    const API_KEY = "AIzaSyCjPeB_QxBiYNT55FxT0QWVw5ifG86v4KQ";
-    const CHANNEL_ID = "UCNjbFCeNd7JDs9IZNYfp_Eg";
-    const container = document.getElementById("streamStatus");
+<script>
+  const container = document.getElementById("streamStatus");
 
-    async function checkLiveStatus() {
-      try {
-        const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&type=video&eventType=live&key=${API_KEY}`);
-        const data = await res.json();
-        if (data.items && data.items.length > 0) {
-          const liveId = data.items[0].id.videoId;
-          container.innerHTML = `
-            <h2 style="color:#FFD700;">🔴 Currently LIVE on YouTube!</h2>
-            <iframe width="100%" height="400" src="https://www.youtube.com/embed/${liveId}?autoplay=1" frameborder="0" allowfullscreen></iframe>
-          `;
-        } else {
-          container.innerHTML = `<h2 style="color:gray;">You are currently <span style="text-decoration: underline;">OFFLINE</span></h2>`;
-        }
-      } catch (err) {
-        container.innerHTML = `<p style="color:red;">Failed to load livestream info.</p>`;
-        console.error(err);
-      }
-    }
+  container.innerHTML = `
+    <h2 style="color:#FFD700;">🔴 Currently LIVE on YouTube!</h2>
+    <iframe width="100%" height="400" src="https://www.youtube.com/embed/5qap5aO4i9A?autoplay=1" frameborder="0" allowfullscreen></iframe>
+  `;
+</script>
 
-    checkLiveStatus();
-  </script>
 </body>
 </html>
