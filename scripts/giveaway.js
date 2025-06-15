@@ -42,13 +42,28 @@ pickBtn.addEventListener("click", () => {
     winnerBox.textContent = `🎰 Picking: ${randomName}`;
     current++;
 
-    if (current >= cycles) {
-      clearInterval(interval);
-      const finalWinner = allChatters[Math.floor(Math.random() * allChatters.length)];
-      winnerBox.innerHTML = `🎉 <strong>${finalWinner}</strong> is the winner! 🎉`;
-      winnerBox.classList.add("winner-show");
-    }
-  }, 100);
-});
+if (current >= cycles) {
+  clearInterval(interval);
+  const finalWinner = allChatters[Math.floor(Math.random() * allChatters.length)];
+  winnerBox.innerHTML = `🎉 <strong>${finalWinner}</strong> is the winner! 🎉`;
+  winnerBox.classList.add("winner-show");
+
+  // 🎊 Launch confetti
+  confetti({
+    particleCount: 150,
+    spread: 100,
+    origin: { y: 0.6 },
+    colors: ['#FFD700', '#00FF88', '#FF69B4']
+  });
+
+  // Optional: fire confetti again after 1s
+  setTimeout(() => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.4 }
+    });
+  }, 1000);
+}
 
 document.addEventListener("DOMContentLoaded", loadFakeChatters);
