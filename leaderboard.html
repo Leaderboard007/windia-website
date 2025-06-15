@@ -41,10 +41,44 @@
     .nav-links a:hover {
       text-decoration: underline;
     }
-    iframe {
+    .login-button {
+      background-color: #5865F2;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .leaderboard {
+      max-width: 800px;
+      margin: 40px auto;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    table {
       width: 100%;
-      height: 100vh;
-      border: none;
+      border-collapse: collapse;
+      color: white;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      background-color: #333;
+    }
+    .first-place {
+      color: gold;
+      font-weight: bold;
+    }
+    .second-place {
+      color: silver;
+      font-weight: bold;
+    }
+    .third-place {
+      color: #cd7f32;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -59,9 +93,58 @@
       <a href="/shop.html">Shop</a>
       <a href="/calendar.html">Calendar</a>
     </div>
-    <a href="/login.html" class="login-button" style="background-color: #5865F2; color: white; padding: 10px 16px; border-radius: 5px; font-weight: bold; text-decoration: none;">Login</a>
+    <a href="/login.html" class="login-button">Login</a>
   </nav>
 
-  <iframe src="https://windia.vercel.app" title="Roobet Wager Leaderboard"></iframe>
+  <div class="leaderboard">
+    <h2>Roobet Wager Leaderboard</h2>
+    <p>Top players with highest wager will win prizes!</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Total Wagered</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboard-body">
+        <!-- Dynamic rows inserted by script -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Sample leaderboard data (replace this with real fetch or backend logic)
+    const users = [
+      { username: 'HighRoller123', wager: 150000 },
+      { username: 'SpinKing', wager: 120000 },
+      { username: 'LuckyCharm', wager: 90000 },
+      { username: 'BananaBoy', wager: 70000 },
+      { username: 'WindiaFan', wager: 50000 }
+    ];
+
+    const tbody = document.getElementById('leaderboard-body');
+
+    users.sort((a, b) => b.wager - a.wager).forEach((user, index) => {
+      const row = document.createElement('tr');
+      const rankCell = document.createElement('td');
+      const userCell = document.createElement('td');
+      const wagerCell = document.createElement('td');
+
+      rankCell.textContent = index + 1;
+      userCell.textContent = user.username;
+      wagerCell.textContent = `₹${user.wager.toLocaleString()}`;
+
+      if (index === 0) rankCell.className = userCell.className = wagerCell.className = 'first-place';
+      if (index === 1) rankCell.className = userCell.className = wagerCell.className = 'second-place';
+      if (index === 2) rankCell.className = userCell.className = wagerCell.className = 'third-place';
+
+      row.appendChild(rankCell);
+      row.appendChild(userCell);
+      row.appendChild(wagerCell);
+      tbody.appendChild(row);
+    });
+  </script>
 </body>
 </html>
