@@ -1,70 +1,59 @@
-const YOUR_DISCORD_ID = "426857675188469773";
-const loggedInUserDiscordId = "426857675188469773";
 
-const allChatters = [
-  "kancha_cheena", "sattaKing", "sunny007",
-  "riderOP", "luckyBaba", "StakeHunter", "WindiaFan"
-];
+const chatterList = document.getElementById('chatter-list');
+const totalChatters = document.getElementById('total-chatters');
+const winnerDiv = document.getElementById('winner');
+const pickBtn = document.getElementById('pick-winner-btn');
 
-const chatterList = document.getElementById("chatter-list");
-const totalDisplay = document.getElementById("total-chatters");
-const pickBtn = document.getElementById("pick-winner-btn");
-const winnerBox = document.getElementById("winner");
+// Jai's Discord ID
+const ADMIN_DISCORD_ID = "426857675188469773";
 
-if (loggedInUserDiscordId === YOUR_DISCORD_ID) {
-  pickBtn.style.display = "inline-block";
+// Fake Discord auth simulation (replace with real logic)
+function isAdminUser() {
+  // In real auth, check against session/cookie or fetch user ID from server
+  return localStorage.getItem("discord_id") === ADMIN_DISCORD_ID;
 }
 
-function loadFakeChatters() {
-  if (!chatterList) return;
-  chatterList.innerHTML = "";
-  allChatters.forEach(user => {
-    const li = document.createElement("li");
-    li.textContent = user;
-    li.style.padding = "6px";
-    li.style.fontWeight = "bold";
-    li.style.fontSize = "1.1em";
-    li.style.color = "#fff";
-    chatterList.appendChild(li);
-  });
+// Load chatters
+async function loadChatters() {
+  try {
+    const res = await fetch('/api/giveaway');
+    const data = await res.json();
 
-  if (totalDisplay) {
-    totalDisplay.textContent = `Total live chatters: ${allChatters.length}`;
+    // Populate chatters
+    chatterList.innerHTML = "";
+    const uniqueUsers = Array.from(new Set(data.chatters));
+    uniqueUsers.forEach(name => {
+      const li = document.createElement("li");
+      li.textContent = name;
+      chatterList.appendChild(li);
+    });
+
+    totalChatters.textContent = `Total live chatters: ${uniqueUsers.length}`;
+
+    if (isAdminUser()) {
+      pickBtn.style.display = "inline-block";
+    }
+
+    // Save names globally
+    window.currentChatters = uniqueUsers;
+  } catch (err) {
+    console.error("Error fetching chatters:", err);
   }
 }
 
+// Pick winner
 pickBtn.addEventListener("click", () => {
-  let cycles = 30;
-  let current = 0;
+  if (!window.currentChatters || window.currentChatters.length === 0) return;
 
-  const interval = setInterval(() => {
-    const randomName = allChatters[Math.floor(Math.random() * allChatters.length)];
-    winnerBox.textContent = `🎰 Picking: ${randomName}`;
-    current++;
+  const winnerName = window.currentChatters[Math.floor(Math.random() * window.currentChatters.length)];
 
-    if (current >= cycles) {
-      clearInterval(interval);
-      const finalWinner = allChatters[Math.floor(Math.random() * allChatters.length)];
-      winnerBox.innerHTML = `🎉 <strong>${finalWinner}</strong> is the winner! 🎉`;
-      winnerBox.classList.add("winner-show");
-
-      // Confetti blast
-      confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { y: 0.6 },
-        colors: ['#FFD700', '#00FF88', '#FF69B4']
-      });
-
-      setTimeout(() => {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.4 }
-        });
-      }, 1000);
-    }
-  }, 100);
+  winnerDiv.innerHTML = `<div class="winner-show">🏆 Winner: ${winnerName} 🥳</div>`;
+  confetti({
+    particleCount: 200,
+    spread: 100,
+    origin: { y: 0.6 }
+  });
 });
 
-document.addEventListener("DOMContentLoaded", loadFakeChatters);
+loadChatters();
+setInterval(loadChatters, 30000); // Refresh every 30 sec
