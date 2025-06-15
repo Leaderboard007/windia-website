@@ -1,52 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Windia Giveaway</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
       background-color: #0e0e0e;
       color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
 
-    nav {
+    header {
+      padding: 20px;
       background-color: #1f1f1f;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-    }
-
-    .nav-left {
-      font-size: 1.6em;
-      font-weight: 700;
-      color: #FFD700;
-    }
-
-    .nav-right a {
-      margin-left: 20px;
-      color: #FFD700;
-      text-decoration: none;
-      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     h1 {
-      color: #FFD700;
       font-size: 2.5em;
-      margin-top: 30px;
-      text-align: center;
+      color: #FFD700;
+      text-shadow: 0 0 10px #FFD700;
     }
 
-    p {
-      text-align: center;
-      color: #ccc;
-    }
-
-    /* Scrolling Chatters */
     .scroll-container {
       height: 150px;
       overflow: hidden;
@@ -78,24 +57,12 @@
       font-weight: bold;
     }
 
-    #total-chatters {
-      color: #FFD700;
-      font-size: 1.4em;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    #pick-winner-btn {
-      margin: 30px auto 0;
-      display: none;
-      padding: 12px 24px;
-      font-size: 1.2em;
-      font-weight: bold;
-      background-color: #FFD700;
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+    .winner-show {
+      animation: winnerPop 1.5s ease-out forwards;
+      color: #00FF88;
+      text-shadow: 0 0 25px #00FF88, 0 0 35px #00FF88;
+      font-size: 2em;
+      margin-top: 30px;
     }
 
     @keyframes winnerPop {
@@ -104,58 +71,47 @@
       100% { transform: scale(1); }
     }
 
-    #winner {
-      animation: winnerPop 1s ease-out forwards;
-      font-size: 2em;
-      color: #00FF88;
-      margin-top: 20px;
+    #pick-winner-btn {
+      padding: 12px 24px;
+      background: #FFD700;
+      color: #000;
+      font-size: 1.1em;
       font-weight: bold;
-      text-align: center;
-      text-shadow: 0 0 20px #00FF88, 0 0 30px #00FF88;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+      margin-top: 20px;
+      display: none;
     }
-    .winner-show {
-  animation: winnerPop 1.5s ease-out forwards;
-  color: #00FF88;
-  text-shadow: 0 0 25px #00FF88, 0 0 35px #00FF88;
-  font-size: 2em;
-  margin-top: 30px;
-}
 
+    #pick-winner-btn:hover {
+      background: #f1c40f;
+    }
+
+    #winner {
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- ✅ Top Navigation -->
-  <nav>
-    <div class="nav-left">Windia</div>
-    <div class="nav-right">
-      <a href="index.html">Leaderboard</a>
-      <a href="giveaway.html">Giveaway</a>
-      <a href="#">Telegram</a>
-      <a href="#">Discord</a>
-      <a href="#">Shop</a>
-      <a href="#">Calendar</a>
-    </div>
-  </nav>
+  <header>
+    <h1>🎁 Windia Livestream Giveaway</h1>
+  </header>
 
-  <!-- ✅ Header -->
-  <h1>🎁 Windia Livestream Giveaway</h1>
-  <p>Watch the stream, stay active in chat, and win live on air!</p>
-
-  <!-- ✅ Chatters Scroll List -->
   <h2 id="total-chatters">Total live chatters: 0</h2>
+
   <div class="scroll-container">
     <ul id="chatter-list" class="scroll-content"></ul>
   </div>
 
-  <!-- ✅ Winner Button + Display -->
-  <div style="text-align:center;">
-    <button id="pick-winner-btn">🎉 Pick Random Winner</button>
-    <h3 id="winner"></h3>
-  </div>
-  <script src="/scripts/giveaway.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <!-- ✅ Load JavaScript -->
+  <button id="pick-winner-btn">🎉 Pick Random Winner</button>
+
+  <div id="winner"></div>
+
+  <!-- Confetti & Giveaway JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="/scripts/giveaway.js"></script>
 
 </body>
